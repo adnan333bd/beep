@@ -1,4 +1,4 @@
-import { Message } from "../messages/message";
+import { Message } from "../messages/message.interface";
 import { USER_LIST } from "./users";
 
 const message_list: Message[] = new Array<Message>();
