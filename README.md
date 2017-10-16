@@ -24,3 +24,6 @@ $ ionic cordova run ios
 
 Substitute ios for android if not on a Mac.
 
+https://icons8.com/
+
+https://material.io/color/#!/?view.left=0&view.right=1&secondary.color=42a5f4&primary.color=009688
