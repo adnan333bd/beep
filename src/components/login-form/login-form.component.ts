@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Account } from '../../models/account/account.interface';
 
 @Component({
   selector: 'login-form',
@@ -7,15 +9,37 @@ import { NavController } from 'ionic-angular';
 })
 export class LoginFormComponent {
 
-  text: string;
+  account = {} as Account;
+  constructor(private navCtrl: NavController,
+    private afAuth: AngularFireAuth,
+    private toastCtrl: ToastController) {
 
-  constructor(private navCtrl: NavController) {
-    console.log('Hello LoginFormComponent Component');
-    this.text = 'Hello World';
   }
 
   navigateToPage(pageName: string) {
     pageName === 'TabsPage' ? this.navCtrl.setRoot(pageName) : this.navCtrl.push(pageName);
+  }
+
+  async login() {
+    try {
+      const result = await this.afAuth.auth.signInWithEmailAndPassword(this.account.email, this.account.password);
+
+      console.log(result);
+
+      this.toastCtrl.create({
+        message: "Logged in successfully.",
+        duration: 3000
+      }).present();
+
+      this.navigateToPage('TabsPage');
+    }
+    catch (e) {
+      console.log(e);
+      this.toastCtrl.create({
+        message: e.message,
+        duration: 3000
+      }).present();
+    }
   }
 
 }

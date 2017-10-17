@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Message } from '../../models/messages/message';
-import { User } from '../../models/user/user';
+import { Message } from '../../models/messages/message.interface';
+import { User } from '../../models/user/user.interface';
 import { MESSAGE_LIST } from '../../models/mocks/messages';
 
 @IonicPage()
