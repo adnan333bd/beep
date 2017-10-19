@@ -1,9 +1,9 @@
 import { Message } from "../messages/message.interface";
-import { USER_LIST } from "./users";
+import { PROFILE_LIST } from "./profiles";
 
 const message_list: Message[] = new Array<Message>();
-USER_LIST.forEach(user => {
-    message_list.push({ user: user, date: new Date(), lastMessage: "Hi man!" });
+PROFILE_LIST.forEach(profile => {
+    message_list.push({ profile: profile, date: new Date(), lastMessage: "Hi man!" });
 });
 
 export const MESSAGE_LIST = message_list;

@@ -10,5 +10,5 @@
 <ion-content padding>
   <img src="assets/img/logo.png" alt="logo" class="logo">
 
-  <login-form></login-form>
+  <login-form (loginStatus)="onLogin($event)"></login-form>
 </ion-content>
