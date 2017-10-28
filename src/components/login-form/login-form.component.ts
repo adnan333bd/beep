@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { Account } from '../../models/account/account.interface';
 import { LoginResponse } from '../../models/login/login-response.interface';
-import { AuthService } from '../../providers/auth-service/auth-service';
+import { AuthService } from '../../providers/auth-service/auth.service';
 
 @Component({
   selector: 'login-form',

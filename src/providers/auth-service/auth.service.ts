@@ -3,11 +3,17 @@ import 'rxjs/add/operator/map';
 import { LoginResponse } from '../../models/login/login-response.interface';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Account } from '../../models/account/account.interface';
+import { User } from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
 
   constructor(private afAuth: AngularFireAuth) {
+  }
+
+  getAuthenticatedUser() : Observable<User> {
+    return this.afAuth.authState;
   }
 
   async createUser(account: Account) {

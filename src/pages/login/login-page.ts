@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { LoginResponse } from '../../models/login/login-response.interface';
+import { DataService } from '../../providers/data-service/data.service';
+import { User } from 'firebase/app';
 
 @IonicPage()
 @Component({
@@ -10,7 +12,7 @@ import { LoginResponse } from '../../models/login/login-response.interface';
 export class LoginPage {
 
   constructor(private navCtrl: NavController, 
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController, private dataService: DataService) {
   }
 
   onLogin(response: LoginResponse) {
@@ -20,7 +22,10 @@ export class LoginPage {
     }
     else {
       message = `Welcome to Beep, ${response.result.email}`;
-      this.navCtrl.setRoot("EditProfilePage");
+
+      this.dataService.getProfile(<User>response.result).subscribe(profile => {
+        profile ? this.navCtrl.setRoot("TabsPage") : this.navCtrl.setRoot("EditProfilePage");
+      });
     }
 
     this.toastCtrl.create({

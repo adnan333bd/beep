@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Account } from '../../models/account/account.interface';
 import { ToastController } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service/auth-service';
+import { AuthService } from '../../providers/auth-service/auth.service';
 import { LoginResponse } from '../../models/login/login-response.interface';
 
 @Component({
