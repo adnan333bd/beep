@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth) {
   }
 
-  getAuthenticatedUser() : Observable<User> {
+  getAuthenticatedUser(): Observable<User> {
     return this.afAuth.authState;
   }
 

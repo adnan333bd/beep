@@ -1,0 +1,14 @@
+app-profile-view {
+    .profile_view_image_container {
+        background-color: color($colors, secondary-light, base);
+        height: 220px;
+    }
+
+    .profile_view_image {
+        padding-top: 20px;
+        height: 200px;
+        max-height: 200px;
+        margin: auto;
+        display: block;
+    }
+}

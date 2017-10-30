@@ -1,23 +1,30 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from 'firebase/app';
 import { Profile } from '../../models/profile/profile.interface';
 import "rxjs/add/operator/take";
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class DataService {  
+export class DataService {
 
   constructor(private database: AngularFireDatabase) {
   }
 
-  getProfile(user: User) {
-    let profileObject = this.database.object<Profile>(`/profiles/${user.uid}`).valueChanges().take(1);
-    return profileObject;
+  getProfile(user: User): Observable<Profile> {
+    return this.database.object(`/profiles/${user.uid}`)
+      .valueChanges()
+      .take(1)
+      .map(
+      (profileObject: any) => {
+        let profile = <Profile>profileObject;
+        profile.dateOfBirth = new Date(Date.parse(profileObject.dateOfBirth));
+        return profile;
+      }
+      );
   }
 
-
-  async saveProfile(user: User, profile: Profile) {
+  async saveProfile(user: User, profile: Profile): Promise<boolean> {
     let profileObject = this.database.object(`/profiles/${user.uid}`);
 
     try {
@@ -29,6 +36,5 @@ export class DataService {
       return false;
     }
   }
-
 
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { LoginResponse } from '../../models/login/login-response.interface';
 import { DataService } from '../../providers/data-service/data.service';
 import { User } from 'firebase/app';

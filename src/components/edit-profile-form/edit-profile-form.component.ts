@@ -3,10 +3,7 @@ import { Profile } from '../../models/profile/profile.interface';
 import { DataService } from '../../providers/data-service/data.service';
 import { AuthService } from '../../providers/auth-service/auth.service';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
 import { User } from 'firebase/app';
-import { NavController } from 'ionic-angular';
-
 
 @Component({
   selector: 'app-edit-profile-form',
@@ -22,11 +19,11 @@ export class EditProfileFormComponent implements OnDestroy {
   profile: Profile = {} as Profile;
 
 
-  constructor(private dataService: DataService, private authService: AuthService, private navCtrl: NavController) {
+  constructor(private dataService: DataService, private authService: AuthService) {
 
     this.saveProfileResult = new EventEmitter<boolean>();
 
-    this.authenticatedUser$ = authService.getAuthenticatedUser()
+    this.authenticatedUser$ = this.authService.getAuthenticatedUser()
       .subscribe((user: User) => {
         this.authenticatedUser = user;
       });

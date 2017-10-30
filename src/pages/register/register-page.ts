@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, ToastController } from 'ionic-angular';
 import { LoginResponse } from '../../models/login/login-response.interface';
 
 @IonicPage()
@@ -9,8 +9,7 @@ import { LoginResponse } from '../../models/login/login-response.interface';
 })
 export class RegisterPage {
 
-  constructor(private navCtrl: NavController, private navParams: NavParams,
-    private toastCtrl: ToastController) {
+  constructor(private toastCtrl: ToastController) {
   }
 
   onRegister(loginResponse: LoginResponse) {

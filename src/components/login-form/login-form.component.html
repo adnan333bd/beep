@@ -17,10 +17,11 @@
       <div padding *ngIf="password.invalid && password.dirty">
         <span class="global__input_error">Password must have 6 to 20 characters</span>
       </div>
-      <ion-row>
-        <button ion-button color="secondary-dark" (click)="navigateToRegisterPage()">Register</button>
-        <button ion-button (click)="login()" [disabled]="loginForm.invalid" >Login</button>
-      </ion-row>
+     
     </ion-card-content>
+    <ion-row>
+      <button ion-button color="secondary-dark" (click)="navigateToRegisterPage()">Register</button>
+      <button ion-button (click)="login()" [disabled]="loginForm.invalid" >Login</button>
+    </ion-row>
   </ion-card>
 </form>

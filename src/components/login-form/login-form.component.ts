@@ -6,7 +6,7 @@ import { LoginResponse } from '../../models/login/login-response.interface';
 import { AuthService } from '../../providers/auth-service/auth.service';
 
 @Component({
-  selector: 'login-form',
+  selector: 'app-login-form',
   templateUrl: 'login-form.component.html'
 })
 export class LoginFormComponent {
@@ -22,10 +22,8 @@ export class LoginFormComponent {
     this.navCtrl.push("RegisterPage");
   }
 
-  
-
   async login() {
-    const response = await this.authService.signIn(this.account);
+    const response: LoginResponse = await this.authService.signIn(this.account);
     this.loginStatus.emit(response);
   }
 
