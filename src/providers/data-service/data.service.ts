@@ -18,7 +18,6 @@ export class DataService {
       .map(
       (profileObject: any) => {
         let profile = <Profile>profileObject;
-        profile.dateOfBirth = new Date(Date.parse(profileObject.dateOfBirth));
         return profile;
       }
       );

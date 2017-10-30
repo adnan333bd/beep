@@ -3,5 +3,5 @@ export interface Profile {
     lastName: string;
     avatar: string;
     email: string;
-    dateOfBirth: Date;
+    dateOfBirth: string;
 }

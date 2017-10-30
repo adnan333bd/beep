@@ -18,7 +18,6 @@ export class EditProfileFormComponent implements OnDestroy {
 
   profile: Profile = {} as Profile;
 
-
   constructor(private dataService: DataService, private authService: AuthService) {
 
     this.saveProfileResult = new EventEmitter<boolean>();
@@ -31,6 +30,7 @@ export class EditProfileFormComponent implements OnDestroy {
 
   async saveProfile() {
     if (this.authenticatedUser) {
+      this.profile.email = this.authenticatedUser.email;
       const result = await this.dataService.saveProfile(this.authenticatedUser, this.profile);
       this.saveProfileResult.emit(result);
     }
@@ -39,5 +39,4 @@ export class EditProfileFormComponent implements OnDestroy {
   ngOnDestroy() {
     this.authenticatedUser$.unsubscribe();
   }
-
 }
