@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>EditProfilePage</ion-title>
   </ion-navbar>
 
@@ -9,5 +9,5 @@
 
 
 <ion-content padding>
-  <app-edit-profile-form (saveProfileResult)="onSaveProfile($event)" ></app-edit-profile-form>
+  <app-edit-profile-form [profile]="profile" (saveProfileResult)="onSaveProfile($event)" ></app-edit-profile-form>
 </ion-content>

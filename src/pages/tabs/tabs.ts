@@ -17,5 +17,4 @@ export class TabsPage {
     this.channelsTab = "ChannelsPage";
     this.profileTab = "ProfilePage";
   }
-
 }

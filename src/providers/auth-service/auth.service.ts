@@ -47,4 +47,8 @@ export class AuthService {
     return response;
   }
 
+  async signOut() {
+    return await this.afAuth.auth.signOut();
+  }
+
 }

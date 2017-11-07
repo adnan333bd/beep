@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Profile } from '../../models/profile/profile.interface';
 
 @IonicPage()
 @Component({
@@ -8,9 +9,12 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 })
 export class EditProfilePage {
 
+  profile: Profile = {} as Profile;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public toastCtrl: ToastController) {
+      this.profile = navParams.get("profile");
   }
 
   onSaveProfile(event: boolean) {
@@ -26,7 +30,7 @@ export class EditProfilePage {
     }).present();
 
 
-    event ? this.navCtrl.setRoot("TabsPage") : console.log("Not authenticated");
+    event ? this.navCtrl.setRoot("ProfilePage") : console.log("Not authenticated");
   }
 
   ionViewDidLoad() {

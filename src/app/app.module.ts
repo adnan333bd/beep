@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AuthService } from '../providers/auth-service/auth.service';
 import { DataService } from '../providers/data-service/data.service';
+import { ChatService } from '../providers/chat-service/chat.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { DataService } from '../providers/data-service/data.service';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthService,
     DataService,
-
+    ChatService
   ]
 })
 export class AppModule { }

@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ChannelsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { ChatService } from '../../providers/chat-service/chat.service';
+import { Channel } from '../../models/channels/channel.interface';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
 @Component({
@@ -15,11 +12,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ChannelsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  channels: Observable<Channel[]>;
+  
+
+  constructor(private alertCtrl: AlertController,
+    private chatService: ChatService, private navCtrl: NavController,
+    private navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ChannelsPage');
+  ionViewWillLoad() {
+    this.getChannels();
+  }
+
+  showAddChannelDialog() {
+    this.alertCtrl.create({
+      title: 'Channel Name',
+      inputs: [{
+        name: 'channelName'
+      }],
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel'
+      },
+      {
+        text: 'Add',
+        handler: data => {
+          this.chatService.addChannel(data.channelName);
+        }
+      }]
+    }).present();
+  }
+
+  getChannels(): void {
+    this.channels = this.chatService.getChannels();
   }
 
 }

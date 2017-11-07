@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Profile } from '../../models/profile/profile.interface';
 import { DataService } from '../../providers/data-service/data.service';
 import { AuthService } from '../../providers/auth-service/auth.service';
@@ -16,7 +16,7 @@ export class EditProfileFormComponent implements OnDestroy {
 
   @Output() saveProfileResult: EventEmitter<Boolean>;
 
-  profile: Profile = {} as Profile;
+  @Input() profile: Profile;
 
   constructor(private dataService: DataService, private authService: AuthService) {
 
@@ -38,5 +38,11 @@ export class EditProfileFormComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.authenticatedUser$.unsubscribe();
+  }
+
+  ngOnInit() {
+    if (!this.profile) {
+      this.profile = {} as Profile;
+    }
   }
 }

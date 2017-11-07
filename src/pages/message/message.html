@@ -1,0 +1,18 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{profile?.firstName}} {{profile?.lastName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <app-chat-message *ngFor="let message of messageList; let i = index" [chatMessage]="message" [chatIndex]="i" ></app-chat-message>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <app-send-message-box></app-send-message-box>
+  </ion-toolbar>
+</ion-footer>
