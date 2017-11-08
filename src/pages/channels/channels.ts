@@ -47,4 +47,8 @@ export class ChannelsPage {
     this.channels = this.chatService.getChannels();
   }
 
+  selectChannel(channel: Channel) {
+    this.navCtrl.push("ChannelChatPage", { channel });
+  }
+
 }
