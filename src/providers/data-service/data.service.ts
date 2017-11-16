@@ -51,14 +51,15 @@ export class DataService {
   }
 
   public async set_User_Online(profile: Profile): Promise<void> {
-   /*  let onlineUserRef = this.database.object(`/online-users/${profile.$key}`).query.ref;
+    let onlineUserRef = this.database.object(`/online-users/${profile.$key}`).query.ref;
     try {
-      await onlineUserRef.update({ ...profile });
+      delete profile.$key;
+      await onlineUserRef.set({ ...profile });
       await onlineUserRef.onDisconnect().remove();
     }
     catch (e) {
       console.log(e);
-    } */
+    }
   }
 
   get_Online_Users_$(): Observable<Profile[]> {
