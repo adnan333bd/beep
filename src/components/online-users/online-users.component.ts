@@ -11,8 +11,7 @@ import { Observable } from "rxjs/Observable";
 })
 export class OnlineUsersComponent implements OnInit {
 
-    onlineUsers_$: Observable<Profile[]>;
-
+    onlineUsers: Profile[];    
     constructor(private dataService: DataService) {
     }
 
@@ -25,7 +24,9 @@ export class OnlineUsersComponent implements OnInit {
 
     ngOnInit() {
         this.setUserOnline();
-        this.onlineUsers_$ = this.dataService.get_Online_Users_$();
+        this.dataService.get_Online_Users_$().subscribe(users => {
+            this.onlineUsers = users;
+        }, e => console.log(e));
     }
 
 }
