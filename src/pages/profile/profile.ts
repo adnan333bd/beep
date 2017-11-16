@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { Profile } from '../../models/profile/profile.interface';
 import { AuthService } from '../../providers/auth-service/auth.service';
 
@@ -13,7 +13,7 @@ export class ProfilePage {
 
   profile = {} as Profile;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private authService: AuthService) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, private authService: AuthService, private app: App) {
   }
 
   navigateToEditProfilePage() {
@@ -26,7 +26,7 @@ export class ProfilePage {
 
   async logout() {
     await this.authService.signOut();
-    this.navCtrl.setRoot("LoginPage");
+    this.app.getRootNav().setRoot("LoginPage");
   }
 
 }

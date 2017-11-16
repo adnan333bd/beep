@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, App } from 'ionic-angular';
 import { LoginResponse } from '../../models/login/login-response.interface';
 import { DataService } from '../../providers/data-service/data.service';
 import { User } from 'firebase/app';
@@ -25,10 +25,7 @@ export class LoginPage {
     else {
       message = `Welcome to Beep, ${response.result.email}`;
 
-      /* this.dataService.get_Profile_$(<User>response.result)
-        .subscribe(profile => { */
-          this.navCtrl.setRoot("TabsPage");
-       /*  }); */
+      this.navCtrl.setRoot("TabsPage");
     }
 
     this.toastService.showMessage(message);
