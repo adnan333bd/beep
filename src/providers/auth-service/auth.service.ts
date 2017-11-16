@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth) {
   }
 
-  getAuthenticatedUser(): Observable<User> {
+  get_Authenticated_User_$(): Observable<User> {
     return this.afAuth.authState;
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   async signOut() {
-    return await this.afAuth.auth.signOut();
+    return this.afAuth.auth.signOut();
   }
 
 }

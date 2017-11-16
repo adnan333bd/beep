@@ -14,6 +14,7 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AuthService } from '../providers/auth-service/auth.service';
 import { DataService } from '../providers/data-service/data.service';
 import { ChatService } from '../providers/chat-service/chat.service';
+import { ToastService } from '../providers/toast-service/toast-service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ChatService } from '../providers/chat-service/chat.service';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthService,
     DataService,
-    ChatService
+    ChatService,
+    ToastService
   ]
 })
 export class AppModule { }

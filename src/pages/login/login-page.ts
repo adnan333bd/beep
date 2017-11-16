@@ -3,6 +3,7 @@ import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { LoginResponse } from '../../models/login/login-response.interface';
 import { DataService } from '../../providers/data-service/data.service';
 import { User } from 'firebase/app';
+import { ToastService } from '../../providers/toast-service/toast-service';
 
 @IonicPage()
 @Component({
@@ -11,26 +12,29 @@ import { User } from 'firebase/app';
 })
 export class LoginPage {
 
-  constructor(private navCtrl: NavController, 
-    private toastCtrl: ToastController, private dataService: DataService) {
+  constructor(private navCtrl: NavController,
+    private dataService: DataService,
+    private toastService: ToastService) {
   }
 
-  onLogin(response: LoginResponse) {
-    let message : string;
+  public onLogin(response: LoginResponse) {
+    let message: string;
     if (response.error) {
       message = response.error.message;
     }
     else {
       message = `Welcome to Beep, ${response.result.email}`;
 
-      this.dataService.getProfile(<User>response.result).subscribe(profile => {
-        profile ? this.navCtrl.setRoot("TabsPage") : this.navCtrl.setRoot("EditProfilePage");
-      });
+      /* this.dataService.get_Profile_$(<User>response.result)
+        .subscribe(profile => { */
+          this.navCtrl.setRoot("TabsPage");
+       /*  }); */
     }
 
-    this.toastCtrl.create({
-      message: message,
-      duration: 3000
-    }).present();
+    this.toastService.showMessage(message);
+  }
+
+  navigateToPage(pageName: string) {
+    this.navCtrl.push(pageName);
   }
 }

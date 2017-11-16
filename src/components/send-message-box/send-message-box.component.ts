@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-send-message-box',
@@ -6,8 +6,16 @@ import { Component } from '@angular/core';
 })
 export class SendMessageBoxComponent {
 
+  message: string;
+  @Output() messageEmitter: EventEmitter<string>;
+
   constructor() {
-    console.log('Hello SendMessageBoxComponent Component');
+    this.messageEmitter = new EventEmitter<string>();
+  }
+
+  sendMessage(message: string) {
+    this.messageEmitter.emit(message);
+    this.message = "";
   }
 
 }

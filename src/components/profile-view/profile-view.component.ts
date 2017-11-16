@@ -28,13 +28,16 @@ export class ProfileViewComponent implements OnInit {
     ngOnInit(): void {
         this.loader.present();
 
-        this.dataService.getAuthenticatedUserProfile()
+        this.dataService.get_Authenticated_Profile_$()
+            .take(1)
             .subscribe((profile: Profile) => {
                 this.userProfile = profile;
                 this.profileEmitter.emit(profile);
+            },
+            e => console.log,
+            () => {
                 this.loader.dismiss();
             });
-
     }
 
     onDateChange(event): void {

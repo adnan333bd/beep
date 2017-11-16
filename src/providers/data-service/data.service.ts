@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { User } from 'firebase/app';
 import { Profile } from '../../models/profile/profile.interface';
 import "rxjs/add/operator/take";
@@ -13,32 +13,34 @@ export class DataService {
   constructor(private authService: AuthService, private database: AngularFireDatabase) {
   }
 
-  getAuthenticatedUserProfile(): Observable<Profile> {
-    return this.authService.getAuthenticatedUser()
-      .mergeMap(user => this.getProfile(user));
+  public get_Authenticated_Profile_$(): Observable<Profile> {
+
+    return this.authService.get_Authenticated_User_$()
+      .mergeMap(user => this.get_Profile_$(user)).take(1);
   }
 
-  searchUser(firstName: string): Observable<Profile[]> {
+  public search_Profiles_$(firstName: string): Observable<Profile[]> {
+
     const query = this.database.list("/profiles", ref => ref.orderByChild('firstName').equalTo(firstName));
     return query.valueChanges().map((profileObject: any[]) => profileObject.map(p => <Profile>p)).take(1);
   }
 
-  getProfile(user: User): Observable<Profile> {
+  public get_Profile_$(user: User): Observable<Profile> {
+
     return this.database.object(`/profiles/${user.uid}`)
-      .valueChanges()
-      .take(1)
-      .map(
-      (profileObject: any) => {
-        let profile = <Profile>profileObject;
-        return profile;
-      }
-      );
+      .snapshotChanges()
+      .map((action) => {
+        return <Profile>({ $key: action.payload.key, ...action.payload.val() });
+      })
+      .take(1);
   }
 
-  async saveProfile(user: User, profile: Profile): Promise<boolean> {
-    let profileObject = this.database.object(`/profiles/${user.uid}`);
+  public async save_Profile(profile: Profile): Promise<boolean> {
+
+    let profileObject = this.database.object(`/profiles/${profile.$key}`);
 
     try {
+      delete profile.$key;
       await profileObject.set(profile);
       return true;
     }
@@ -48,7 +50,23 @@ export class DataService {
     }
   }
 
+  public async set_User_Online(profile: Profile): Promise<void> {
+   /*  let onlineUserRef = this.database.object(`/online-users/${profile.$key}`).query.ref;
+    try {
+      await onlineUserRef.update({ ...profile });
+      await onlineUserRef.onDisconnect().remove();
+    }
+    catch (e) {
+      console.log(e);
+    } */
+  }
 
+  get_Online_Users_$(): Observable<Profile[]> {
+    return this.database.list(`online-users`).valueChanges()
+      .map(profileObjects =>
+        profileObjects.map(profileObject =>
+          <Profile>profileObject));
+  }
 
 }
 

@@ -13,13 +13,15 @@ export class LoginFormComponent {
 
   account = {} as Account;
   @Output() loginStatus: EventEmitter<LoginResponse>;
+  @Output() navToPageEmitter: EventEmitter<string>; 
 
   constructor(private navCtrl: NavController, private authService: AuthService) {
     this.loginStatus = new EventEmitter<any>();
+    this.navToPageEmitter = new EventEmitter<string>();
   }
 
   navigateToRegisterPage() {
-    this.navCtrl.push("RegisterPage");
+    this.navToPageEmitter.emit("RegisterPage");
   }
 
   async login() {

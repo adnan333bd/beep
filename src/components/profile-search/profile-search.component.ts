@@ -8,8 +8,8 @@ import { Profile } from "../../models/profile/profile.interface";
 })
 export class ProfileSearchComponent {
 
-    query: string = "";
-    profileList: Profile[];
+    public query: string = "";
+    public profileList: Profile[];
 
     @Output() profileSelectedEmitter: EventEmitter<Profile>;
 
@@ -17,17 +17,17 @@ export class ProfileSearchComponent {
         this.profileSelectedEmitter = new EventEmitter<Profile>();
     }
 
-    selectProfile(profile) {
+    public selectProfile(profile): void {
+
         this.profileSelectedEmitter.emit(profile);
     }
 
-    searchUser() {
-        console.log(this.query);
-        this.dataService.searchUser(this.query)
+    public searchUser(): void {
+        
+        this.dataService.search_Profiles_$(this.query)
             .subscribe((profiles: Profile[]) => {
                 this.profileList = profiles;
             },
-            error => console.log,
-            () => console.log("completed"));
+            error => console.log);
     }
 }

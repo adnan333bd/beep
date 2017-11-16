@@ -12,8 +12,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ChannelsPage {
 
-  channels: Observable<Channel[]>;
-  
+  channels_Stream: Observable<Channel[]>;  
 
   constructor(private alertCtrl: AlertController,
     private chatService: ChatService, private navCtrl: NavController,
@@ -44,11 +43,11 @@ export class ChannelsPage {
   }
 
   getChannels(): void {
-    this.channels = this.chatService.getChannels();
+    this.channels_Stream = this.chatService.getChannels_$();
   }
 
-  selectChannel(channel: Channel) {
+  /* selectChannel(channel: Channel) {
     this.navCtrl.push("ChannelChatPage", { channel });
-  }
+  } */
 
 }

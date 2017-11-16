@@ -13,7 +13,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let channel of channels | async" (click)="selectChannel(channel)">
+    <ion-item *ngFor="let channel of channels_Stream | async" navPush="ChannelChatPage" [navParams]="{ channel: channel }">
       #{{channel.name}}
     </ion-item>
   </ion-list>

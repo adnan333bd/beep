@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Profile } from '../../models/profile/profile.interface';
+import { ToastService } from '../../providers/toast-service/toast-service';
+import { DataService } from '../../providers/data-service/data.service';
 
 @IonicPage()
 @Component({
@@ -9,32 +11,37 @@ import { Profile } from '../../models/profile/profile.interface';
 })
 export class EditProfilePage {
 
-  profile: Profile = {} as Profile;
+  profile: Profile;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public toastCtrl: ToastController) {
-      this.profile = navParams.get("profile");
+    public toastService: ToastService,
+    public dataService: DataService) {
+    this.profile = navParams.get("profile");
+    console.log('edit profile cons');
   }
 
-  onSaveProfile(event: boolean) {
+  onSaveProfile(success: boolean) {
     let message;
-    if (event)
+    if (success)
       message = "Profile saved successfully.";
     else
       message = "Could not save profile."
 
-    this.toastCtrl.create({
-      message: message,
-      duration: 3000
-    }).present();
+    this.toastService.showMessage(message);
 
-
-    event ? this.navCtrl.setRoot("ProfilePage") : console.log("Not authenticated");
+    success ? this.navCtrl.setRoot("ProfilePage") : console.log("Not authenticated");
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditProfilePage');
+  ionViewWillLoad() {
+    if (!this.profile) {
+      this.dataService.get_Authenticated_Profile_$()
+        .subscribe(profile => {
+          console.log('edit profile - ionViewWillLoad');
+          this.profile = profile;
+          console.log(profile);
+        });
+    }
   }
 
 }

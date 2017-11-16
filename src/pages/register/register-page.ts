@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, ToastController } from 'ionic-angular';
+import { IonicPage, ToastController, NavController } from 'ionic-angular';
 import { LoginResponse } from '../../models/login/login-response.interface';
+import { ToastService } from '../../providers/toast-service/toast-service';
 
 @IonicPage()
 @Component({
@@ -9,7 +10,7 @@ import { LoginResponse } from '../../models/login/login-response.interface';
 })
 export class RegisterPage {
 
-  constructor(private toastCtrl: ToastController) {
+  constructor(private toastService: ToastService, private navCtrl: NavController) {
   }
 
   onRegister(loginResponse: LoginResponse) {
@@ -19,10 +20,9 @@ export class RegisterPage {
     else
       message = `Account not created as ${loginResponse.error.message.toLowerCase()}`;
 
-    this.toastCtrl.create({
-      message: message,
-      duration: 3000
-    }).present();
+    this.toastService.showMessage(message);
+
+    this.navCtrl.setRoot("EditProfilePage");    
   }
 
 }
