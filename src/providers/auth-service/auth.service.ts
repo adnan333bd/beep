@@ -5,11 +5,13 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Account } from '../../models/account/account.interface';
 import { User } from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { DataService } from '../data-service/data.service';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
   }
 
   get_Authenticated_User_$(): Observable<User> {
@@ -48,7 +50,7 @@ export class AuthService {
   }
 
   async signOut() {
-    return this.afAuth.auth.signOut();
+    await this.afAuth.auth.signOut();    
   }
 
 }

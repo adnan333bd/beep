@@ -4,6 +4,8 @@ import { User } from 'firebase/app';
 import { Profile } from '../../models/profile/profile.interface';
 import "rxjs/add/operator/take";
 import "rxjs/add/operator/mergeMap";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/toPromise";
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth-service/auth.service';
 
@@ -60,6 +62,20 @@ export class DataService {
     catch (e) {
       console.log(e);
     }
+  }
+
+  public set_User_Offline(): Promise<any> {
+    return this.get_Authenticated_Profile_$()
+      .flatMap(profile => {
+        let onlineUserRef = this.database.object(`/online-users/${profile.$key}`).query.ref;
+        try {
+          delete profile.$key;
+          return onlineUserRef.remove();
+        }
+        catch (e) {
+          console.log(e);
+        }
+      }).toPromise();
   }
 
   get_Online_Users_$(): Observable<Profile[]> {

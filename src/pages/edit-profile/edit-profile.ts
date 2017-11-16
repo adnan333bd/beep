@@ -30,7 +30,7 @@ export class EditProfilePage {
 
     this.toastService.showMessage(message);
 
-    success ? this.navCtrl.setRoot("ProfilePage") : console.log("Not authenticated");
+    success ? this.navCtrl.setRoot("TabsPage") : console.log("Not authenticated");
   }
 
   ionViewWillLoad() {
