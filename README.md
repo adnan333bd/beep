@@ -1,6 +1,9 @@
 Group chat appplication with Ionic 3 , Firebase , RxJS
 ______________________________________________________
 
+Update: "angularfire2": "^5.0.0-rc.4",
+"firebase": "^4.5.0"
+
 
 https://icons8.com/
 
