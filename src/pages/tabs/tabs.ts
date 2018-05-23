@@ -8,13 +8,13 @@ import { IonicPage } from 'ionic-angular';
 })
 export class TabsPage {
 
-  inboxTab: string;
-  channelsTab: string;
-  profileTab: string;
+  inboxTabRoot: string;
+  channelsTabRoot: string;
+  profileTabRoot: string;
 
   constructor() {
-    this.inboxTab = "InboxPage";
-    this.channelsTab = "ChannelsPage";
-    this.profileTab = "ProfilePage";
+    this.inboxTabRoot = "InboxPage";
+    this.channelsTabRoot = "ChannelsPage";
+    this.profileTabRoot = "ProfilePage";
   }
 }

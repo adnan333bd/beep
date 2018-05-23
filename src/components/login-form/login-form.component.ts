@@ -16,7 +16,7 @@ export class LoginFormComponent {
   @Output() navToPageEmitter: EventEmitter<string>; 
 
   constructor(private navCtrl: NavController, private authService: AuthService) {
-    this.loginStatus = new EventEmitter<any>();
+    this.loginStatus = new EventEmitter<LoginResponse>();
     this.navToPageEmitter = new EventEmitter<string>();
   }
 

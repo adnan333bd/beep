@@ -38,8 +38,7 @@ export class EditProfilePage {
       this.dataService.get_Authenticated_Profile_$()
         .subscribe(profile => {
           console.log('edit profile - ionViewWillLoad');
-          this.profile = profile;
-          console.log(profile);
+          this.profile = profile;          
         });
     }
   }
