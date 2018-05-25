@@ -12,7 +12,7 @@ export class SearchUserPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  onProfileEmitted(profile: Profile) {
+  openChat(profile: Profile) {
     this.navCtrl.push("MessagePage", { profile });
   }
 

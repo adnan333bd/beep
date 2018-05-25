@@ -80,7 +80,7 @@ export class DataService {
           `/online-users/${profile.$key}`
         ).query.ref;
         try {
-          delete profile.$key;
+          //delete profile.$key;
           return onlineUserRef.remove();
         } catch (e) {
           console.log(e);
@@ -92,9 +92,15 @@ export class DataService {
   get_Online_Users_$(): Observable<Profile[]> {
     return this.database
       .list(`online-users`)
-      .valueChanges()
-      .map(profileObjects =>
-        profileObjects.map(profileObject => <Profile>profileObject)
-      );
+      .snapshotChanges()
+      .map(actions => {
+        return actions.map(
+          action =>
+            <Profile>{
+              $key: action.payload.key,
+              ...action.payload.val()
+            }
+        );
+      });
   }
 }

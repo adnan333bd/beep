@@ -16,7 +16,7 @@ export class ProfileViewComponent implements OnInit {
 
     @Output() profileEmitter: EventEmitter<Profile>;
 
-    constructor(private dataService: DataService, private authService: AuthService, private loadingCtrl: LoadingController) {
+    constructor(private dataService: DataService, private loadingCtrl: LoadingController) {
 
         this.profileEmitter = new EventEmitter<Profile>();
 

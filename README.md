@@ -39,3 +39,33 @@ Copy/paste: pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6
 5. Password must have at least 6 characters and 1 uppercase letter:
 Expression: (?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{6,}$
 Copy/paste: pattern="(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{6,}$"
+
+##firebase db Rules explanation
+https://www.youtube.com/watch?v=PUBnlbjZFAI
+
+##Rules used
+```{
+  "rules": {
+    "online-users" : {
+      ".read" : "auth !== null",
+      ".write" : "auth !== null"
+    },
+    "channels" : {
+      ".read" : "auth !== null",
+      ".write" : "auth !== null"
+    },
+    "channel-names": {
+      ".read" : "auth !== null",
+      ".write" : "auth !== null"
+    },
+   	"profiles" : {
+      ".read" : "auth !== null",
+      ".indexOn" : "firstName",
+      "$uid" : {
+        ".write" : "$uid === auth.uid",
+        ".read" : "auth !== null"
+      }
+    }
+  }
+}```
+

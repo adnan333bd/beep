@@ -11,7 +11,7 @@ import { Message } from '../../models/messages/message.interface';
 })
 export class MessagePage {
 
-  profile: Profile;
+  selectedProfile: Profile;
   messageList: Message[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -19,7 +19,7 @@ export class MessagePage {
   }
 
   ionViewWillLoad() {
-    this.profile = this.navParams.get("profile");
+    this.selectedProfile = this.navParams.get("profile");
   }
 
 }

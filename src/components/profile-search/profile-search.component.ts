@@ -23,8 +23,10 @@ export class ProfileSearchComponent {
     }
 
     public searchUser(): void {
+
+        const trimmedQuery = this.query.trim();
         
-        this.dataService.search_Profiles_$(this.query)
+        this.dataService.search_Profiles_$(trimmedQuery)
             .subscribe((profiles: Profile[]) => {
                 this.profileList = profiles;
             },
