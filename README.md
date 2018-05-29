@@ -46,6 +46,10 @@ https://www.youtube.com/watch?v=PUBnlbjZFAI
 ##Rules used
 ```{
   "rules": {
+    "last-messages": {
+      ".read": "auth!==null",
+      ".write": "auth!==null"
+    },
     "messages": {
       ".read": "auth!==null",
       ".write": "auth!==null"
