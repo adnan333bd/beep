@@ -1,15 +1,7 @@
-Group chat appplication with Ionic 3 , Firebase , RxJS
-______________________________________________________
-
-Update: "angularfire2": "^5.0.0-rc.4",
-"firebase": "^4.5.0"
+### Chat appplication with Ionic 3 , Firebase, AngularFire v5 and RxJS 5
 
 
-https://icons8.com/
-
-https://material.io/color/#!/?view.left=0&view.right=1&secondary.color=42a5f4&primary.color=009688
-
-Various regular expressions as suggested by Mitja Krepek:
+## Various regular expressions as suggested by Mitja Krepek:
 
 
 1. Password must have 6 to 20 characters:
@@ -81,3 +73,12 @@ https://www.youtube.com/watch?v=PUBnlbjZFAI
   }
 }```
 
+
+##Misc
+Update: "angularfire2": "^5.0.0-rc.4",
+"firebase": "^4.5.0"
+
+
+https://icons8.com/
+
+https://material.io/color/#!/?view.left=0&view.right=1&secondary.color=42a5f4&primary.color=009688
