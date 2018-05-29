@@ -4,9 +4,11 @@
 - Also multiple person can group chat creating channels
 
 ##firebase db Rules explanation
+
 https://www.youtube.com/watch?v=PUBnlbjZFAI
 
 ###Rules used
+
   ```{
     "rules": {
       "last-messages": {
