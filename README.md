@@ -1,7 +1,7 @@
-### Chat appplication with Ionic 3 , Firebase, AngularFire v5 and RxJS 5
+## Chat appplication with Ionic 3 , Firebase, AngularFire v5 and RxJS 5
 
 
-## Various regular expressions as suggested by Mitja Krepek:
+### Various regular expressions as suggested by Mitja Krepek:
 
 
 1. Password must have 6 to 20 characters:
@@ -35,46 +35,47 @@ Copy/paste: pattern="(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{6,}$"
 ##firebase db Rules explanation
 https://www.youtube.com/watch?v=PUBnlbjZFAI
 
-##Rules used
-```{
-  "rules": {
-    "last-messages": {
-      ".read": "auth!==null",
-      ".write": "auth!==null"
-    },
-    "messages": {
-      ".read": "auth!==null",
-      ".write": "auth!==null"
-    },
-    "user-messages": {
-      ".read": "auth!==null",
-      ".write": "auth!==null"
-    },
-    "online-users" : {
-      ".read" : "auth !== null",
-      ".write" : "auth !== null"
-    },
-    "channels" : {
-      ".read" : "auth !== null",
-      ".write" : "auth !== null"
-    },
-    "channel-names": {
-      ".read" : "auth !== null",
-      ".write" : "auth !== null"
-    },
-   	"profiles" : {
-      ".read" : "auth !== null",
-      ".indexOn" : "firstName",
-      "$uid" : {
-        ".write" : "$uid === auth.uid",
-        ".read" : "auth !== null"
+###Rules used
+  ```{
+    "rules": {
+      "last-messages": {
+        ".read": "auth!==null",
+        ".write": "auth!==null"
+      },
+      "messages": {
+        ".read": "auth!==null",
+        ".write": "auth!==null"
+      },
+      "user-messages": {
+        ".read": "auth!==null",
+        ".write": "auth!==null"
+      },
+      "online-users" : {
+        ".read" : "auth !== null",
+        ".write" : "auth !== null"
+      },
+      "channels" : {
+        ".read" : "auth !== null",
+        ".write" : "auth !== null"
+      },
+      "channel-names": {
+        ".read" : "auth !== null",
+        ".write" : "auth !== null"
+      },
+      "profiles" : {
+        ".read" : "auth !== null",
+        ".indexOn" : "firstName",
+        "$uid" : {
+          ".write" : "$uid === auth.uid",
+          ".read" : "auth !== null"
+        }
       }
     }
-  }
-}```
+  }```
 
 
-##Misc
+## Misc
+
 Update: "angularfire2": "^5.0.0-rc.4",
 "firebase": "^4.5.0"
 
