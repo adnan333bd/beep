@@ -8,11 +8,10 @@ import { Message } from '../../models/messages/message.interface';
 })
 export class ChatMessageComponent {
 
-  @Input() chatMessage: Message;
-  @Input() chatIndex: number;
+  @Input() message: Message;
+  @Input() userId: string;
 
-  constructor() {
-    
+  constructor() {    
   }
 
 }

@@ -14,7 +14,7 @@ export class DataService {
   constructor(
     private authService: AuthService,
     private database: AngularFireDatabase
-  ) {}
+  ) { }
 
   public get_Authenticated_Profile_$(): Observable<Profile> {
     return this.authService

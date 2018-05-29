@@ -4,11 +4,14 @@ import { Channel } from "../../models/channels/channel.interface";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
+import "rxjs/add/observable/forkJoin";
 import { ChannelMessage } from "../../models/channels/channel-message.interface";
+import { Message } from "../../models/messages/message.interface";
+import { AuthService } from "../auth-service/auth.service";
 
 @Injectable()
 export class ChatService {
-  constructor(private database: AngularFireDatabase) {}
+  constructor(private database: AngularFireDatabase, private authService: AuthService) { }
 
   public channelNamesRef$: AngularFireList<Channel> = this.database.list(
     `channel-names`
@@ -64,4 +67,31 @@ export class ChatService {
   private get_Channels_Ref(channelKey: string) {
     return this.database.list(`channels/${channelKey}`);
   }
+
+  async sendChat(message: Message) {
+    await this.database.list('/messages').push(message);
+  }
+
+  private getOneToOneMessages(pathToAllMessages: AngularFireList<{ $key: string }>): Observable<{ $key: string }[]> {
+    return pathToAllMessages.snapshotChanges()
+      .map(actionArray => {
+        return actionArray.map(
+          action =>
+            <{ $key: string }>{
+              $key: action.payload.key
+            }
+        );
+      });
+  }
+
+  getChats(userTwoId: string): Observable<Message[]> {
+    return this.authService.get_Authenticated_User_$()
+      .map(user => user.uid)
+      .mergeMap(uid => this.getOneToOneMessages(this.database.list(`/user-messages/${uid}/${userTwoId}`)))
+      .mergeMap(chats => {
+        return Observable.forkJoin(chats.map(chat => this.database.object(`/messages/${chat.$key}`).valueChanges().take(1).map(msObj => <Message>msObj)))
+      });
+  }
+
+
 }
