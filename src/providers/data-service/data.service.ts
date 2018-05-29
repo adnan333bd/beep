@@ -34,16 +34,20 @@ export class DataService {
   }
 
   public get_Profile_$(user: User): Observable<Profile> {
+    return this.get_Profile_ById_$(user.uid);
+  }
+
+  public get_Profile_ById_$(userId: string): Observable<Profile> { 
     return this.database
-      .object(`/profiles/${user.uid}`)
-      .snapshotChanges()
-      .map(action => {
-        return <Profile>{
-          $key: action.payload.key,
-          ...action.payload.val()
-        }; /*incase does not exist, new profile object with key set to user.uid is returned*/
-      })
-      .take(1);
+    .object(`/profiles/${userId}`)
+    .snapshotChanges()
+    .map(action => {
+      return <Profile>{
+        $key: action.payload.key,
+        ...action.payload.val()
+      }; /*incase does not exist, new profile object with key set to user.uid is returned*/
+    })
+    .take(1);
   }
 
   public async save_Profile(profile: Profile): Promise<boolean> {

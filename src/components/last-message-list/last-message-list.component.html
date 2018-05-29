@@ -1,0 +1,10 @@
+<ion-list>
+    <ion-item-divider>Last Messages</ion-item-divider>
+    <ion-item *ngFor="let message of lastMessages" (click)="openChat(userId === message.userFromId ? message.userToId : message.userFromId)">
+        <ion-avatar item-left>
+            <img src="assets/img/avatar.png" alt="">
+        </ion-avatar>
+        <h2>{{ userId === message.userFromId ? message.userToProfile.firstName : message.userFromProfile.firstName }}</h2>
+        <p>{{message.content}}</p>
+    </ion-item>
+</ion-list>

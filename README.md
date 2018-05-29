@@ -46,6 +46,14 @@ https://www.youtube.com/watch?v=PUBnlbjZFAI
 ##Rules used
 ```{
   "rules": {
+    "messages": {
+      ".read": "auth!==null",
+      ".write": "auth!==null"
+    },
+    "user-messages": {
+      ".read": "auth!==null",
+      ".write": "auth!==null"
+    },
     "online-users" : {
       ".read" : "auth !== null",
       ".write" : "auth !== null"
