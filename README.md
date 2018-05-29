@@ -3,7 +3,6 @@
 - Register in 2 different device and chat between them realtime
 - Also multiple person can group chat creating channels
 
-
 ##firebase db Rules explanation
 https://www.youtube.com/watch?v=PUBnlbjZFAI
 
