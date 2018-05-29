@@ -1,5 +1,8 @@
 ## Chat appplication with Ionic 3 , Firebase, AngularFire v5 and RxJS 5
 
+- Register in 2 different divice and chat between them realtime
+- Also multiple person can group chat creating channels
+
 
 ### Various regular expressions as suggested by Mitja Krepek:
 
